@@ -1,5 +1,7 @@
 # @deepwhale-cn/dsh-ai-output-trust
 
+[![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/plugins/feely0208/dsh-ai-output-trust)
+
 **AI 输出信任边界** —— 检查代码有没有直接执行 AI 输出。
 
 ## 不装它会怎样
