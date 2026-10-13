@@ -1,0 +1,14 @@
+{
+  "id": "AIT-SHELL",
+  "title": "把 AI 输出拼进 shell 命令",
+  "severity": "critical",
+  "source": "OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling；命令注入（CWE-78）",
+  "advice": "把模型输出拼进 exec/spawn/system 的字符串里，等于把 shell 交给它。改用参数数组形式（execFile / spawn(cmd, [args])），并对每个参数做白名单校验。",
+  "check": {
+    "type": "file-pattern",
+    "pattern": "\\b(exec|execSync|spawn|spawnSync|system|popen|subprocess\\.(run|call|Popen)|os\\.system|shell_exec|Runtime\\.getRuntime)\\s*\\([^)]{0,140}(aiResponse|aiOutput|llmOutput|llmResponse|modelOutput|generatedCode|completion|choices\\[|response\\.choices)",
+    "flags": "g",
+    "exts": [".js", ".mjs", ".cjs", ".ts", ".py", ".rb", ".php", ".go", ".java"],
+    "max": 20
+  }
+}

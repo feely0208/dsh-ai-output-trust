@@ -1,0 +1,14 @@
+{
+  "id": "AIT-FS",
+  "title": "文件路径来自 AI 输出（路径穿越风险）",
+  "severity": "high",
+  "source": "OWASP Top 10 for LLM Applications — LLM05；路径穿越（CWE-22）",
+  "advice": "AI 输出的文件名/路径可能包含 `../../`，指向你没想到的目录。写入、删除、读取前必须：① 规范化路径；② 断言结果仍在允许的根目录内；③ 拒绝绝对路径。",
+  "check": {
+    "type": "file-pattern",
+    "pattern": "\\b(writeFile|writeFileSync|unlink|unlinkSync|rm|rmSync|readFile|readFileSync|open|remove|rename|copyFile)\\s*\\([^)]{0,120}(aiResponse|aiOutput|llmOutput|llmResponse|modelOutput|generatedPath|generated_path|fileNameFromModel)",
+    "flags": "g",
+    "exts": [".js", ".mjs", ".cjs", ".ts", ".py", ".rb", ".php", ".go", ".java"],
+    "max": 20
+  }
+}

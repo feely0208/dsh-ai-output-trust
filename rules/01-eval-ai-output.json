@@ -1,0 +1,14 @@
+{
+  "id": "AIT-EVAL",
+  "title": "把 AI 输出直接 eval / Function 执行",
+  "severity": "critical",
+  "source": "OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling：未校验的模型输出进入下游组件可导致 RCE；OWASP Top 10 — A03 Injection",
+  "advice": "AI 输出是**不可信输入** —— 它可能被提示注入控制，也可能自己「发挥」。eval() 执行它等于把任意代码执行权交给一个概率模型。改成：解析成结构化数据（JSON Schema 校验）后，只走白名单分支。",
+  "check": {
+    "type": "file-pattern",
+    "pattern": "\\b(eval|new Function|vm\\.runIn|Function\\()\\s*\\([^)]{0,120}(aiResponse|ai_response|aiOutput|ai_output|aiResult|ai_result|llmResponse|llm_response|llmOutput|llm_output|modelOutput|model_output|generatedCode|generated_code|completion|choices\\[|response\\.choices)",
+    "flags": "g",
+    "exts": [".js", ".mjs", ".cjs", ".ts", ".tsx", ".jsx", ".py", ".rb", ".php"],
+    "max": 20
+  }
+}

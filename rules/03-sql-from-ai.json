@@ -1,0 +1,14 @@
+{
+  "id": "AIT-SQL",
+  "title": "把 AI 输出直接拼进 SQL",
+  "severity": "high",
+  "source": "OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling；SQL 注入（CWE-89）",
+  "advice": "即使 SQL 是模型「生成」的，它仍然是不可信输入 —— 而模型很容易被诱导生成 `DROP TABLE` 或带条件的越权查询。用参数化查询；如果要让模型生成 SQL，只允许 SELECT 并做语法白名单。",
+  "check": {
+    "type": "file-pattern",
+    "pattern": "(SELECT|INSERT|UPDATE|DELETE|DROP|query|execute)\\s*[^;\\n]{0,100}[+`$]\\s*[^;\\n]{0,40}(aiResponse|aiOutput|llmOutput|llmResponse|modelOutput|generatedSql|generated_sql|sqlFromModel|completion)",
+    "flags": "gi",
+    "exts": [".js", ".mjs", ".cjs", ".ts", ".py", ".rb", ".php", ".go", ".java"],
+    "max": 20
+  }
+}
