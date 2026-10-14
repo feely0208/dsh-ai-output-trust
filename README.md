@@ -71,7 +71,11 @@ dsh-ai-output-trust --list-rules    # 列出规则和依据
 dsh-ai-output-trust --html r.html
 ```
 
-![dsh-ai-output-trust 的检查报告示例](https://www.deepwhale.org.cn/plugin-assets/dsh-ai-output-trust/report.png)
+![dsh-ai-output-trust 检查报告示例](https://www.deepwhale.org.cn/plugin-assets/dsh-ai-output-trust/report.png)
+
+![dsh-ai-output-trust 演示模式输出](https://www.deepwhale.org.cn/plugin-assets/dsh-ai-output-trust/demo.png)
+
+![dsh-ai-output-trust 规则与依据](https://www.deepwhale.org.cn/plugin-assets/dsh-ai-output-trust/rules.png)
 
 ## 边界
 
