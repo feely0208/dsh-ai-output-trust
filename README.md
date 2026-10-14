@@ -71,7 +71,7 @@ dsh-ai-output-trust --list-rules    # 列出规则和依据
 dsh-ai-output-trust --html r.html
 ```
 
-![报告示例](docs/report.png)
+![dsh-ai-output-trust 的检查报告示例](https://raw.githubusercontent.com/feely0208/dsh-ai-output-trust/main/docs/report.png)
 
 ## 边界
 
