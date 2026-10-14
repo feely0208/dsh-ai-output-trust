@@ -2,6 +2,9 @@
 
 [![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/plugins/feely0208/dsh-ai-output-trust)
 
+
+**关键词**：AI 输出 · 提示注入 · 提示词注入 · 任意代码执行 · 大模型安全 · AI 安全 · LLM 安全
+**Keywords**: AI output trust · prompt injection · LLM security · code execution · OWASP LLM
 **AI 输出信任边界** —— 检查代码有没有直接执行 AI 输出。
 
 ## 不装它会怎样
