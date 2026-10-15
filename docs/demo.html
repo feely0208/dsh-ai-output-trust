@@ -1,0 +1,65 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0d0f13; display:flex; justify-content:center;
+         align-items:flex-start; padding:22px; font-family:-apple-system,"PingFang SC",
+         "Helvetica Neue",sans-serif; }
+  .win { width:1180px; border-radius:11px; overflow:hidden;
+          box-shadow:0 14px 44px rgba(0,0,0,.55); }
+  .bar { background:#2a2d34; padding:11px 15px; display:flex; align-items:center; gap:9px; }
+  .dot { width:12px; height:12px; border-radius:50%; }
+  .t { margin-left:11px; color:#7a8290; font-size:13px; letter-spacing:.02em; }
+  .term { background:#1b1d22; padding:20px 22px 24px; font-family:"SF Mono",Menlo,Consolas,
+           "PingFang SC",monospace; font-size:13.5px; line-height:1.72; }
+  .cmd { color:#5ee08a; margin-bottom:13px; font-size:13.5px; }
+  .cmd b { color:#fff; font-weight:600; }
+  .l { white-space:pre-wrap; word-break:break-word; }
+</style></head><body>
+  <div class="win">
+    <div class="bar">
+      <span class="dot" style="background:#ff5f57"></span>
+      <span class="dot" style="background:#febc2e"></span>
+      <span class="dot" style="background:#28c840"></span>
+      <span class="t">dsh-ai-output-trust · demo</span>
+    </div>
+    <div class="term">
+      <div class="cmd">$ <b>dsh-ai-output-trust --demo</b></div>
+      <div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  【演示模式】使用内置样本，不是你的真实项目。</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  深鲸守护 · AI 输出信任边界 v0.1.0</span></div>
+<div class="l"><span style="color:#d8dee9">  ──────────────────────────────────────────────────────────────────</span></div>
+<div class="l"><span style="color:#d8dee9">  扫描范围   内置演示样本 · 故意有问题的项目</span></div>
+<div class="l"><span style="color:#d8dee9">             1 个文件 · 0 个目录已跳过</span></div>
+<div class="l"><span style="color:#d8dee9">  检查规则   4/4 条</span></div>
+<div class="l"><span style="color:#ffd166">  命中       4 条</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#ff6b6b">  【严重】2 条</span></div>
+<div class="l"><span style="color:#7a8290">    · 把 AI 输出直接 eval / Function 执行</span></div>
+<div class="l"><span style="color:#d8dee9">      位置  agent.js:5</span></div>
+<div class="l"><span style="color:#7a8290">      证据  eval(aiResponse</span></div>
+<div class="l"><span style="color:#7a8290">      依据  OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling：未校验的模型输出进入下游组件可导致 RCE；OWASP Top 10 — A03 Injection</span></div>
+<div class="l"><span style="color:#d8dee9">      建议  AI 输出是**不可信输入** —— 它可能被提示注入控制，也可能自己「发挥」。eval() 执行它等于把任意代码执行权交给一个概率模型。改成：解析成结构化数据（JSON Schema 校验）后，只走白名单分支。</span></div>
+<div class="l"><span style="color:#7a8290">    · 把 AI 输出拼进 shell 命令</span></div>
+<div class="l"><span style="color:#d8dee9">      位置  agent.js:6</span></div>
+<div class="l"><span style="color:#7a8290">      证据  exec(&#x27;ls &#x27; + llmOutput</span></div>
+<div class="l"><span style="color:#7a8290">      依据  OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling；命令注入（CWE-78）</span></div>
+<div class="l"><span style="color:#d8dee9">      建议  把模型输出拼进 exec/spawn/system 的字符串里，等于把 shell 交给它。改用参数数组形式（execFile / spawn(cmd, [args])），并对每个参数做白名单校验。</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#ff6b6b">  【高】2 条</span></div>
+<div class="l"><span style="color:#7a8290">    · 把 AI 输出直接拼进 SQL</span></div>
+<div class="l"><span style="color:#d8dee9">      位置  agent.js:7</span></div>
+<div class="l"><span style="color:#7a8290">      证据  query(&#x27;SELECT * FROM users WHERE id = &#x27; + aiOutput</span></div>
+<div class="l"><span style="color:#7a8290">      依据  OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling；SQL 注入（CWE-89）</span></div>
+<div class="l"><span style="color:#d8dee9">      建议  即使 SQL 是模型「生成」的，它仍然是不可信输入 —— 而模型很容易被诱导生成 `DROP TABLE` 或带条件的越权查询。用参数化查询；如果要让模型生成 SQL，只允许 SELECT 并做语法白名单。</span></div>
+<div class="l"><span style="color:#7a8290">    · 文件路径来自 AI 输出（路径穿越风险）</span></div>
+<div class="l"><span style="color:#d8dee9">      位置  agent.js:8</span></div>
+<div class="l"><span style="color:#7a8290">      证据  writeFileSync(aiResponse</span></div>
+<div class="l"><span style="color:#7a8290">      依据  OWASP Top 10 for LLM Applications — LLM05；路径穿越（CWE-22）</span></div>
+<div class="l"><span style="color:#d8dee9">      建议  AI 输出的文件名/路径可能包含 `../../`，指向你没想到的目录。写入、删除、读取前必须：① 规范化路径；② 断言结果仍在允许的根目录内；③ 拒绝绝对路径。</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  ──────────────────────────────────────────────────────────────────</span></div>
+    </div>
+  </div>
+</body></html>

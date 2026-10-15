@@ -1,0 +1,47 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0d0f13; display:flex; justify-content:center;
+         align-items:flex-start; padding:22px; font-family:-apple-system,"PingFang SC",
+         "Helvetica Neue",sans-serif; }
+  .win { width:1180px; border-radius:11px; overflow:hidden;
+          box-shadow:0 14px 44px rgba(0,0,0,.55); }
+  .bar { background:#2a2d34; padding:11px 15px; display:flex; align-items:center; gap:9px; }
+  .dot { width:12px; height:12px; border-radius:50%; }
+  .t { margin-left:11px; color:#7a8290; font-size:13px; letter-spacing:.02em; }
+  .term { background:#1b1d22; padding:20px 22px 24px; font-family:"SF Mono",Menlo,Consolas,
+           "PingFang SC",monospace; font-size:13.5px; line-height:1.72; }
+  .cmd { color:#5ee08a; margin-bottom:13px; font-size:13.5px; }
+  .cmd b { color:#fff; font-weight:600; }
+  .l { white-space:pre-wrap; word-break:break-word; }
+</style></head><body>
+  <div class="win">
+    <div class="bar">
+      <span class="dot" style="background:#ff5f57"></span>
+      <span class="dot" style="background:#febc2e"></span>
+      <span class="dot" style="background:#28c840"></span>
+      <span class="t">dsh-ai-output-trust · rules</span>
+    </div>
+    <div class="term">
+      <div class="cmd">$ <b>dsh-ai-output-trust --list-rules</b></div>
+      <div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  深鲸守护 · AI 输出信任边界 —— 4 条规则</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  [critical] AIT-EVAL</span></div>
+<div class="l"><span style="color:#d8dee9">        把 AI 输出直接 eval / Function 执行</span></div>
+<div class="l"><span style="color:#7a8290">        依据：OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling：未校验的模型输出进入下游组件可导致 RCE；OWASP Top 10 — A03 Injection</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  [critical] AIT-SHELL</span></div>
+<div class="l"><span style="color:#d8dee9">        把 AI 输出拼进 shell 命令</span></div>
+<div class="l"><span style="color:#7a8290">        依据：OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling；命令注入（CWE-78）</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  [high] AIT-SQL</span></div>
+<div class="l"><span style="color:#d8dee9">        把 AI 输出直接拼进 SQL</span></div>
+<div class="l"><span style="color:#7a8290">        依据：OWASP Top 10 for LLM Applications — LLM05 Improper Output Handling；SQL 注入（CWE-89）</span></div>
+<div class="l"><span style="color:#7a8290">&nbsp;</span></div>
+<div class="l"><span style="color:#d8dee9">  [high] AIT-FS</span></div>
+<div class="l"><span style="color:#d8dee9">        文件路径来自 AI 输出（路径穿越风险）</span></div>
+<div class="l"><span style="color:#7a8290">        依据：OWASP Top 10 for LLM Applications — LLM05；路径穿越（CWE-22）</span></div>
+    </div>
+  </div>
+</body></html>

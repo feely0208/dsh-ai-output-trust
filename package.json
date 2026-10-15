@@ -1,6 +1,6 @@
 {
   "name": "@deepwhale-cn/dsh-ai-output-trust",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "检查代码有没有直接执行 AI 输出 —— eval/exec/SQL/文件路径，这是 agent 里风险很高的一类",
   "type": "module",
   "license": "MIT",
@@ -22,12 +22,13 @@
   ],
   "files": [
     "lib",
-    "skill",
     "bin",
     "rules",
-    "docs",
+    "skill",
     "cordis.patch.yml",
-    "README.md"
+    "tests/fixtures",
+    "README.md",
+    "LICENSE"
   ],
   "main": "./lib/index.js",
   "exports": {
