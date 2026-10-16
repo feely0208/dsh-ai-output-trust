@@ -3,6 +3,8 @@
 [![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/plugins/feely0208/dsh-ai-output-trust)
 
 
+**大模型安全**：直接执行模型输出（eval / shell / SQL / 文件路径）是风险很高的一类 —— 这里查代码里有没有这么干。
+
 **关键词**：AI 输出 · AI 安全 · 提示注入 · 提示词注入 · 大模型安全 · 任意代码执行 · LLM 安全 · 大模型
 **Keywords**: AI output trust · prompt injection · LLM security · code execution · OWASP LLM
 **AI 输出信任边界** —— 检查代码有没有直接执行 AI 输出。

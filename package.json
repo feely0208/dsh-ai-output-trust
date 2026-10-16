@@ -18,7 +18,8 @@
     "prompt-injection",
     "code-execution",
     "agent-safety",
-    "output-validation"
+    "output-validation",
+    "大模型安全"
   ],
   "files": [
     "lib",
