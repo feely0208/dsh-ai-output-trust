@@ -1,5 +1,7 @@
 # @deepwhale-cn/dsh-ai-output-trust
 
+[![dshfind 收录](https://dshfind.com/api/badge/feely0208/dsh-ai-output-trust?lang=zh)](https://dshfind.com/zh/plugins/feely0208/dsh-ai-output-trust)
+
 [![Listed on dsh-plugin.org](https://dsh-plugin.org/badges/listed.svg)](https://dsh-plugin.org/plugins/feely0208/dsh-ai-output-trust)
 
 
